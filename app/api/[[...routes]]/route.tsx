@@ -6,7 +6,19 @@ import { devtools } from 'frog/dev'
 import { handle } from 'frog/next'
 import { serveStatic } from 'frog/serve-static'
 import { ABI } from '../../../abi'
-import DownloadButton from '../../DownloadButton'
+
+
+const DownloadButton = () => {
+  const fileUrl = 'https://gateway.pinata.cloud/ipfs/QmdX7LJGB8WQqQPHka3aa1CvsMYfze6s1ExyvFCMGkTELF'; // Replace with your file URL
+  const fileName = '/LIBRONFT.jpg'; // Replace with the desired file name
+
+  return (
+    <a href={fileUrl} download={fileName}>
+      <button>Download File</button>
+    </a>
+  );
+};
+
 
 const app = new Frog({
   assetsPath: '/',
@@ -62,7 +74,7 @@ app.frame('/', (c) => {
     intents: [
       <TextInput placeholder="Enter your wallet" />,
       <Button.Transaction target="/mint">Download Receipt</Button.Transaction>,
-      //<DownloadButton />,
+      //<DownloadButton></DownloadButton>,
       status === 'response' && <Button.Reset>Reset</Button.Reset>,
     ],
   })
